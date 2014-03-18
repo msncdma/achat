@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.anlong.achat"
+    android:versionCode="10"
+    android:versionName="1.0" >
+
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <!-- 解锁的权限 -->
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <!-- 亮屏的权限 -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <!-- 统计 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <!-- 实时语音相关 -->
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+    <!-- 地图权限 -->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
+    <!-- 传感器 -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <!-- 打开闪光灯 -->
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.autofocus" />
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="19" />
+
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="true" >
+    </supports-screens>
+
+    <!-- 蓝牙/wifi -->
+    <uses-feature
+        android:name="android.hardware.bluetooth"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.location"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.location.gps"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.wifi"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
+    <application>
+
+        <!-- android:allowBackup="true" -->
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        <!-- android:theme="@style/AppTheme" > -->
+        android:name="com.anlong.achat.ImApp"
+        android:uiOptions="splitActionBarWhenNarrow" >
+
+        <!-- 高德地图Key 待定 -->
+
+
+        <!--
+              <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="e54ac39fd24128c611e8db34febf0340" />
+        -->
+
+        <activity
+            android:name="com.anlong.im.ui.FirstLoadActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <receiver
+            android:name="com.anlong.im.broadcast.NetChangeReceive"
+            android:permission="android.permission.ACCESS_NETWORK_STATE" >
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name="com.anlong.im.service.UpdateService"
+            android:label="@string/app_name" >
+        </service>
+        <service android:name="com.anlong.im.service.CoreService" />
+
+        <activity
+            android:name="com.anlong.im.ui.LoginActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name="com.anlong.im.ui.MainActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <!-- android:windowSoftInputMode="stateHidden|adjustPan" -->
+        <activity
+            android:name="com.anlong.im.ui.LoginInputListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" >
+        </activity>
+        <activity
+            android:name="com.anlong.im.ui.ChatActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:windowSoftInputMode="adjustResize|adjustUnspecified|stateHidden" >
+        </activity>
+        <activity
+            android:name="com.anlong.im.ui.AppActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.anlong.im.ui.ContactsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name="com.anlong.im.ui.GroupActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.anlong.im.ui.SessionActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.anlong.im.ui.MessageHistoryActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.anlong.im.ui.SettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.anlong.im.ui.LoginSettingActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name="com.anlong.im.ui.PersonalInfoActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name="com.anlong.im.ui.ForgetPasswordActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name="com.anlong.im.ui.FindPasswordActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name="com.anlong.im.ui.GroupGroupInfoActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name="com.anlong.im.ui.GroupDiscussionInfoActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name="com.anlong.im.ui.GroupMemberActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name="com.anlong.im.ui.ReportStateActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" >
+        </activity>
+        <activity
+            android:name="com.anlong.im.ui.GroupAddChangeActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name="com.anlong.im.ui.GroupCreateGroupActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="com.anlong.im.ui.GroupCreateDiscussionActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name="com.anlong.im.ui.SynchroHistroyActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name="com.anlong.im.ui.PersonalDataActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name="com.anlong.im.ui.SystemMessageActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" >
+        </activity>
+        <activity
+            android:name="com.anlong.im.ui.ChooseListActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name="com.anlong.im.ui.ChangePwdActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name="com.anlong.im.ui.SelectMSMBalanceActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name="com.anlong.im.ui.AboutActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name="com.anlong.im.ui.AboutProtocolActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name="com.anlong.im.ui.FeedBackActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name="com.anlong.im.ui.SamplePictureActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name="com.anlong.im.ui.SampleGifPictureActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name="com.anlong.im.ui.InitPageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/popdialog" />
+        <activity
+            android:name="com.anlong.im.ui.WhatsnewActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name="com.anlong.im.ui.OaPageActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name="com.anlong.im.ui.SearchHistoryActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:windowSoftInputMode="adjustPan|adjustUnspecified|stateHidden" />
+        <activity
+            android:name="com.anlong.im.ui.PictureListActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:hardwareAccelerated="false"
+            android:launchMode="singleTask"
+            android:screenOrientation="sensor"
+            android:theme="@style/picActivityStyle" >
+        </activity>
+        <activity
+            android:name="com.anlong.im.ui.widget.ActionSheet"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@style/actionSheetStyle" />
+        <activity
+            android:name="com.anlong.im.ui.widget.ActionSheetForOpenSession"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@style/actionSheetStyle" />
+        <activity
+            android:name="com.anlong.im.ui.widget.scan.CaptureActivityPortrait"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name="com.anlong.im.ui.AppSysatemMessageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" >
+        </activity>
+        <!-- 文件操作 start -->
+
+
+        <!--
+        <activity
+            android:name="com.anlong.im.ui.widget.file.FileExplorerTabActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:launchMode="singleTop"
+            android:theme="@style/MyActionBarTabStyle"
+            android:uiOptions="splitActionBarWhenNarrow" >
+        </activity>
+         android:theme="@android:style/Theme.Holo.Light"
+        <activity
+            android:name="com.anlong.im.ui.widget.file.FileViewActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Holo.Light" />
+        <activity
+            android:name="com.anlong.im.ui.GroupFileShareingActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name="com.anlong.im.dao.socket.down.DownloadManagerActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+
+        <service android:name="com.anlong.im.dao.socket.down.DownloadService" />
+        -->
+
+
+        <!-- 文件操作 end -->
+
+
+        <!-- 友盟统计 start -->
+        <!--
+        <activity
+            android:name="com.umeng.fb.ConversationActivity"
+            android:launchMode="singleTask"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name="com.umeng.fb.ContactActivity"
+            android:launchMode="singleTask"
+            android:theme="@android:style/Theme.NoTitleBar" />
+
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="51fefccf56240b983d072ec3" >
+        </meta-data>
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="hiapk" >
+        </meta-data>
+        -->
+        <!-- 友盟统计 end -->
+
+
+        <!--
+        <activity
+            android:name=".ui.ShowMapActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" >
+        </activity>
+        <activity
+            android:name="com.anlong.im.ui.AddAppActivity"
+            android:theme="@style/MyTransparent" >
+        </activity>
+        <activity android:name="com.anlong.im.ui.IEWebPageActivity" >
+        </activity>
+        <activity
+            android:name=".ui.ScreenShotActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" >
+        </activity>
+
+        <service android:name="com.anlong.im.service.ShakeService" />
+
+        <activity
+            android:name=".bcmsg.BroadcastMsgActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" >
+        </activity>
+        <activity
+            android:name=".bcmsg.BroadcastMsgCreateActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" >
+        </activity>
+
+        实时语音 begin
+        <activity
+            android:name="com.anlong.im.video.ui.PSTN"
+            android:icon="@drawable/ic_launcher"
+            android:label="@string/pstn_name" >
+        </activity>
+        <activity
+            android:name="com.anlong.im.video.ui.SIP"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.anlong.im.video.ui.ChangeAccount"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.anlong.im.video.ui.SIPUri"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Dialog" >
+            <intent-filter>
+                <action android:name="android.intent.action.CALL" />
+                动作：拨打电话，被呼叫的联系人在数据中指定。
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="sip" />
+                <data android:scheme="sipdroid" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SENDTO" />
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                类别：能够被浏览器安全使用的 activities 必须支持这个类别。
+                <data android:scheme="imto" />
+                <data android:scheme="sip" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.CALL_PRIVILEGED" />
+                当用户按下拨号键时，Android系统会弹出选择菜单让用户选择使用那个拨号器
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="sip" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.anlong.im.video.ui.Activity2"
+            android:excludeFromRecents="true"
+            android:label="@string/app_name"
+            android:taskAffinity="" />
+        <activity
+            android:name="com.anlong.im.video.ui.Settings"
+            android:configChanges="orientation|keyboardHidden"
+            android:excludeFromRecents="true"
+            android:label="@string/app_name"
+            android:taskAffinity="" >
+        </activity>
+        <activity
+            android:name="com.anlong.im.video.ui.CallRealtimeSpeechActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" >
+        </activity>
+
+        <receiver android:name="com.anlong.im.video.ui.LoopAlarm" />
+        <receiver android:name="com.anlong.im.video.ui.OwnWifi" />
+        <receiver android:name="com.anlong.im.video.ui.Caller" >
+            <intent-filter android:priority="-1" >
+                <action android:name="android.intent.action.NEW_OUTGOING_CALL" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.anlong.im.video.ui.Receiver"
+            android:enabled="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.EXTERNAL_APPLICATIONS_AVAILABLE" />
+                <action android:name="android.intent.action.EXTERNAL_APPLICATIONS_UNAVAILABLE" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REPLACED" />
+
+                <data android:scheme="package" />
+                <data android:path="com.anlong.im.video" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.anlong.im.video.ui.PhoneStart" >
+            <intent-filter>
+                <action android:name="org.sipdroid.START_SIPDROID" />
+                <action android:name="org.sipdroid.STOP_SIPDROID" />
+            </intent-filter>
+        </receiver>
+
+        <service android:name="com.anlong.im.video.ui.RegisterService" />
+
+        <activity
+            android:name=".bcmsg.BroadcastMessageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" >
+        </activity>
+        实时语音 end
+        -->
+
+    </application>
+
+</manifest>
